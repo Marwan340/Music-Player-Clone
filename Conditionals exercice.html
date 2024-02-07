@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditionals, code exercice</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        
+        let amount = prompt("How much did the member spend this month in additional charges?");
+        let grandtotal= "";
+
+        if (amount>=250 && amount<500){ document.getElementById("output").innerHTML=grandtotal =
+            (parseFloat(amount*(0.9*1.0625)+500));}
+
+        else if (amount >=500 && amount <1000){document.getElementById("output").innerHTML= grandtotal =
+            (parseFloat(amount*(0.875*1.0625)+500));}
+        
+        else if (amount >=1000 && amount <2000){document.getElementById("output").innerHTML= grandtotal =
+            (parseFloat((amount)*(0.85*1.0625)+500));}
+        
+        else if (amount>=2000){document.getElementById("output").innerHTML=grandtotal =
+            (parseFloat((amount*(0.8*1.0625)+500)));}
+        
+       
+        document.getElementById("output").innerHTML= grandtotal
+        
+    </script>
+</body>
+</html>

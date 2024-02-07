@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings</title>
+    <style>
+        #substring1{width: 20px;
+                    margin-right: 5px;}
+        #substring2{width: 20px;
+                    margin-right: 5px;}
+        button{padding: 3px;
+                margin: 2px;}
+        textarea{width: 280px;
+                height: 100px;}
+    </style>
+</head>
+<body>
+    <h3>Enter a string:</h3>
+    <textarea id="textinput"></textarea><br/>
+    <button id="lowc" type="button">Lower case</button>
+    <button id="uppc" type="button">Upper case</button>
+    <button id="trim" type="button">Trim</button><br/>
+    <button id="reverse" type="button">Reverse entry</button>
+    <button id="count" type="button">Character count</button><br/>
+    <input type="number" id="substring1"/><input type="number" id="substring2"/><button id="substring" type="button">Extract strings</button>
+    <br/>
+    <input type="text" id="termsearch" width="20px"/> <button id="search" type="button">Search in entry</button>
+    <button id="replace" type="button">Replace character</button>
+
+    <button id="reset" type="reset">Reset</button>
+
+    <div id="output"></div>
+
+    <script>
+        const lowc=document.getElementById("lowc");
+        const uppc=document.getElementById("uppc");
+        const trim=document.getElementById("trim");
+        const reverse=document.getElementById("reverse");
+        const count=document.getElementById("count");
+        const substring=document.getElementById("substring");
+        const search=document.getElementById("search");
+        const replace=document.getElementById("replace");
+        
+        
+        
+
+        document.addEventListener("DOMContentLoaded", ()=>{
+            let out="";
+            const textinput=document.getElementById("textinput");
+            
+            
+            let termsearch=document.getElementById("termsearch").value;
+
+            lowc.onclick=()=>{out="Entry with lowered cases: "+textinput.value.toLowerCase()+". <br/>";
+            document.getElementById("output").innerHTML=out};
+            
+            uppc.onclick=()=>{out="Entry with upper cases: "+textinput.value.toUpperCase();
+                document.getElementById("output").innerHTML=out};
+            
+            trim.onclick=()=>{out=textinput.value.trim();
+                document.getElementById("output").innerHTML=out};
+            
+            reverse.onclick=()=>{out=textinput.value.split("").reverse().join("");
+                    document.getElementById("output").innerHTML=out};
+            
+            count.onclick=()=>{const stringcount=textinput.value.length;
+                out="String character count: "+ stringcount+".";
+                document.getElementById("output").innerHTML=out};
+            
+            substring.onclick=()=>{const substring1=parseInt(document.getElementById("substring1").value);
+                                const substring2=parseInt(document.getElementById("substring2").value);
+                        if (!isNaN(substring1)&& !isNaN(substring2)){if(substring1>0 && substring2<=textinput.value.length&&substring1<=substring2){
+                        
+                    out=textinput.value.substring(substring1, substring2);
+                    document.getElementById("output").innerHTML=out;}
+                else{document.getElementById("output").innerHTML="Invalid substring range.";}} else{document.getElementById("output").innerHTML="Please enter a valid integer."}}
+
+            search.onclick=()=>{const termsearch=document.getElementById("termsearch").value;
+                const index=textinput.value.indexOf(termsearch);
+                out=index!==-1?"Found at index: "+index+".":"Not found.";
+                document.getElementById("output").innerHTML=out;};
+            
+            replace.onclick=()=>{
+                
+                let x=0;
+
+                while(x<textinput.value.length){
+                 if(textinput.value.charAt(x)===`@`||textinput.value.charAt(x)===`£`||textinput.value.charAt(x)===`$`||textinput.value.charAt(x)===`€`)
+                 {textinput.value=(textinput.value.slice(0, x) + textinput.value.slice(x+1));}
+                 else{x++;}}
+                 out="The following characters (@£$€) have been removed: "+ textinput.value+".";
+                document.getElementById("output").innerHTML=out;}
+            })
+    </script>
+</body>
+</html>

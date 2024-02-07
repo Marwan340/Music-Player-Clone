@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings Templates</title>
+</head>
+<style>
+        #modal{background-color: lightgray;
+            border-radius: 2px;
+            padding: 10px;
+            width: 100px;
+            
+            }
+</style>
+<body>
+    <form>
+        <input type="text" id="inputone"/>
+        <input type="text" id="inputtwo"/>
+        <input type="text" id="inputthree"/>
+        <button type="button" id="execute">Execute</button>
+
+    </form>
+    
+    <div id="output">
+
+    </div>
+    <script>
+        
+        
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const execute=document.getElementById("execute");
+            let out="";
+            let output=document.getElementById("output");
+            let inputone=document.getElementById("inputone");
+            let inputtwo=document.getElementById("inputtwo");
+            let inputthree=document.getElementById("inputthree");
+                
+            
+            
+
+            execute.onclick=()=>{const inputo=inputone.value;
+                                const inputt=inputtwo.value;
+                                const inputth=inputthree.value;
+                                
+                                for(let x=0; x<inputo.length; x++)
+                                    if((inputo+inputt+inputth).charAt(x)===`@`||(inputo+inputt+inputth).charAt(x)===`£`||(inputo+inputt+inputth).charAt(x)===`$`){out=`Invalid characters`; break;}  else{
+                            out=`<p id="modal">${inputo} ${inputt} ${inputth}</p>`;}
+                        document.getElementById("output").innerHTML=out;}
+                                }
+
+        )
+
+    </script>
+</body>
+</html>

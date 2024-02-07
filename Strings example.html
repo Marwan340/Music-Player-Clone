@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings Example</title>
+</head>
+<body>
+    <h3>Enter a string:</h3>
+    <textarea id="stringinput"></textarea><br/>
+    <button id="getstring">Process String</button>
+    <div id="output"></div>
+
+    <script>
+        const getstring=document.getElementById("getstring");
+
+        getstring.onclick=(e)=>{
+                let out="";
+                let stringinput=document.getElementById("stringinput").value;
+
+                let stringcount=stringinput.length;
+                out +="<h2>String Info:</h2>";
+                out +="Characters: "+stringcount+ ". <br/>";
+                out +="<h2>Character positions:</h2><br/>";
+
+                out+="Input with lowered cases: "+ stringinput.toLowerCase()+"<br/>"; 
+
+                let x=0;
+                while(x<stringcount){
+                    out+= x+": "+ stringinput.charAt(x)+" // Unicode: "+ stringinput.charCodeAt(x)+"<br/>";x++;
+                }
+                if (stringinput.endsWith(".")){out+="This string ends with a period."}else{out+="This string does not end with a period."}
+                out+="<p>The letter u is at column nr "+stringinput.indexOf(`u`)+ "and "+ stringinput.lastIndexOf("u")+"<br/>";
+
+                out+="Character replacement: "+stringinput.replace(/[A,S]/g, "*");
+
+                document.getElementById("output").innerHTML=out;}
+    </script>
+</body>
+</html>

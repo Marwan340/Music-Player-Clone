@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,500&family=Titillium+Web:ital,wght@1,200&display=swap');
+* {padding:0%;
+    margin: 0%;
+    box-sizing: border-box;}
+
+.homeandsearch {position: static;
+        bottom: 730px;
+        right: 1300px;
+        width: 400px;
+        height: 100px;
+        border: 3px solid white;
+        color: rgb(53, 53, 41);
+        font-size: 20px;
+        border-radius: 15px;
+        padding: 6px;
+        margin-bottom: 20px;
+        margin-right: 15px;
+        }
+        #homearea{width: 200px;
+                    box-sizing: border-box;
+                        }
+        #homearea:hover{color: azure;
+                        transition-duration: 0.3s;
+                        cursor:pointer}
+        #inputsearcharea {border: none;
+                            width: auto;
+                            height: 30px;
+                            border-radius: 6px;
+                            margin-top: 7px;
+                            background-image: url("white-search-icon-transparent-background-14.jpg");
+                            background-repeat: no-repeat;
+                            }
+        #searchimage { position: relative;
+                        top: 1px;}
+        #searchbutton {background: none;
+                        border: none;
+                        padding: 0;}
+        #output {
+                margin-top: 10px;
+                margin-bottom: 10px; /* Adjust the margin as needed */
+                padding: 10px;
+                border: 2px solid wheat;
+                border-radius: 5px;
+                }
+                        
+        .playlists, .albums, .artists, .podcasts {
+            display: inline-block; 
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 5px;
+            margin: 3px;}
+        #homelibrarycontainer {
+           padding-right: 20px;
+           margin-top: 140px;
+        }
+        .library {position: static;
+            top: 80px;
+            right: 1300px;
+            width: 400px;
+            height: auto;
+            border: 3px solid white;
+            padding: 9px;
+            border-radius: 15px;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        .recents {
+            position: sticky;
+            left: 330px;}
+        #searchfavourites {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .headsong {
+            display: inline-block;
+            text-align: left;
+            font-size: 19px;
+            width: 270px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 4px;
+            margin: 10px; 
+        }
+        .headsong,
+        .songone, .songtwo, .songthree, .songfour, .songfive, .songsix,
+        .playlists,
+        .albums,
+        .artists,
+        .podcasts,
+        .songportrait {
+    transition-duration: 0.3s;
+}
+
+        .headsong:hover,
+        .songone:hover, .songtwo:hover, .songthree:hover, .songfour:hover, .songfive:hover, .songsix:hover,
+        .playlists:hover,
+        .albums:hover,
+        .artists:hover,
+        .podcasts:hover,
+        .songportrait:hover {
+    background-color: rgb(228, 228, 234);
+    transform: scale(1.05);
+                        }
+
+        .headsong,
+        .songone, .songtwo, .songthree, .songfour, .songfive, .songsix, 
+        .playlists,
+        .albums,
+        .artists,
+        .podcasts,
+        .songportrait {
+    transform: scale(1)
+                        }
+
+         .imagelibrary { display: inline-block;
+            }
+        #songsandpodcasts {
+            border: 3px solid white;
+            border-radius: 15px;
+            padding: 10px;
+            position: sticky;
+            margin-top: 260px;
+            height: auto;            
+            width: 70%;
+            align-items: center;
+        }
+        
+        .songone,  .songtwo, .songthree, .songfour, .songfive, .songsix {
+            display: block;
+            text-align: center;
+            font-size: 19px;
+            width: 270px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 4px;
+            margin: 10px;            
+        }
+        .songportrait {
+            display: inline-block;
+            width: 270px;
+            height: 300px;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px;
+        }
+    i, input {margin-left: 10px;
+        margin-right: 10px;
+    }
+    #playcommands {
+        text-align: center;}
+    #progressBar {
+        width: 400px;
+        margin-left: 300px;
+        height: 60px;
+    }
+    .progress {
+            width: 1px;
+            height: 3px;
+            background: #006B5A;
+            transition: width .1s linear;
+          }
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(153, 153, 156);
+    font-family: "Shantell", sans-serif;   
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+
+    button {background:none;
+           }

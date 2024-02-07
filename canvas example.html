@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Example</title>
+</head>
+<body>
+    <canvas id="Canvas"></canvas>
+    <div id="SaveArea">
+        <img id="CanvasImg"/>
+        <h2>Click Right to Save</h2>
+        <button id="btnBack">Back</button>
+    </div>
+    <div id="tools">
+        <table>
+            <tr>
+                <td><label for="ColorChange">Color:</label>
+                    <input type="color" id="ColorChange/"/></td>
+                <td><label for="lineWidth">Width:</label>
+                    <input type="range" id="lineWidth" min="1" max="10" step="1"/></td>
+                <td><button id="btnSave">Save:</button><button id="btnClear">Clear</button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var drawing=false;
+        var context;
+
+        window.onload=function(){
+            document.getElementById("btnClear").addEventListener("click", function () {
+                context.clearRect(0,0,context.canvas.width, context.canvas.height)
+            }, false);
+            document.getElementById("btnBack").addEventListener("click", function(){
+                document.getElementById("Canvas").style.display="block";
+                document.getElementById("SaveArea").style.display="none";
+                document.getElementById("tools").style.display="block";
+            }, false);
+            document.getElementById("lineWidth").addEventListener("change", function(){
+                context.lineWidth=document.getElementById("lineWidth").value;
+            }, false);
+            document.getElementById("btnSave").addEventListener("click", function(){
+                document.getElementById("Canvas").style.display="none";
+                document.getElementById("SaveArea").style.display="block";
+                document.getElementById("tools").style.display="none";
+
+                var dataURL=document.getElementById("Canvas").toDataURL();
+                document.getElementById("CanvasImg").src=dataURL;
+            }, false);
+            context=document.getElementById("Canvas").getContext("2d");
+            context.canvas.width=window.innerWidth;
+            context.canvas.height=window.innerHeight-60;
+
+            document.onmousemove=handleMouseMove;
+            document.onmousedown=handleDown;
+            document.onmouseup=handleUp;
+
+            context.stroleStyle="#000";
+            context.lineJoin="round";
+            context.lineWidth=5;
+        }
+        function handleUp(e){
+            drawing=!drawing;
+            
+        }
+        function handleDown(e){
+            drawing=!drawing;
+            context.moveTo(e.clientX, e.clientY);
+            context.beginPath();
+        }
+        function handleMouseMove(e){
+            if(drawing){
+                context.lineTo(e.clientX,e.clientY);
+                context.closePath();
+                context.stroke();
+                context.moveTo(e.clientX,e.clientY)
+            } else{context.moveTo(e.clientX, e.clientY);}
+        }
+    </script>
+</body>
+</html>

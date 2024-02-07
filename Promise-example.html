@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Example</title>
+</head>
+<style>
+    h2{text-align: center;}
+    p{padding: 20px;}
+</style>
+<body>
+    <input type="number" id="post" placeholder="Enter a post number from 1-100"/>
+    <button type="submit" id="getpost">Get post title & body</button>
+    <div id="output"></div>
+    
+    <script>
+            
+            const getpost=document.getElementById("getpost");
+
+            getpost.onclick=()=>{
+                const post=document.getElementById("post").value;
+                let url=`https://jsonplaceholder.typicode.com/posts/${post}`;
+        const postPromise1 = fetch(url)
+        .then(response=> {if(!response.ok){throw new Error(`HTTP Error Status: ${response.status}`);}
+        return response.json();});
+Promise.all([postPromise1])
+ .then(data => {
+                const title=data[0].title;
+                const body=data[0].body;
+                document.getElementById("output").innerHTML=`<h2>${title}</h2><br/><p>${body}<br/>`;
+                })
+ .catch(error => console.error(error))}
+        
+    </script>
+</body>
+</html>

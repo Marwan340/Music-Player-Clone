@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic HTML Elements</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <script>
+        const newDiv=document.createElement("div");
+        newDiv.innerHTML="Hello world";
+        newDiv.addEventListener("click", ()=>alert("You clicked on the div."));
+        document.body.appendChild(newDiv);
+
+        /*const existingDiv=document.getElementById("existing-div");
+        existingDiv.innerHTML="New Text";
+        document.body.removeChild(existingDiv);*/
+
+
+    </script>
+</body>
+</html>

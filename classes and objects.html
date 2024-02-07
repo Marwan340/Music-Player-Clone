@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes and Objects</title>
+</head>
+<style>
+    form{border: 2px solid black;
+        border-radius: 10px;
+        padding: 4px;
+        width: 300px;
+        text-align: center;}
+</style>
+<body>
+    <form>
+    <Label for="Transportmethod">Choose transport method:</Label>
+    <select name="Transportmethod" id="transport">
+        <option value="Bus" id="chBus">Bus</option>
+        <option value="Subway" id="chSubway">Subway</option>
+        <option value="Tram" id="chTram">Tram</option>
+        <option value="Train" id="chTrain">Train</option>
+    </select><br/><br/><br/>
+    
+        <input type="text" id="passengername" placeholder="Name"/>
+        <input type="number" id="passengerage" placeholder="Age"/>
+        <input type="text" id="passengerdest" placeholder="Destination"/>
+    <br/>
+    <button type="button" id="addpassenger">Add Passenger</button>
+    <button type="button" id="removepassenger">Remove Passenger</button>
+</form>
+    <div id="output"></div>
+    <script>
+                let Vehicle=class{constructor(number, capacity, route, type)
+                        {this.number=number;
+                        this.capacity=capacity;
+                        this.route=route;
+                        this.type=type;
+                        this.passengers=[];}
+                        addpassenger(Passenger){if (this.passengers.length<this.capacity){this.passengers.push(Passenger);
+                                        return true;}
+                                        else{return false;}}
+                        removepassenger(Passenger){const index=this.passengers.indexOf(Passenger);
+                                             if (index!==-1){this.passengers.splice(index, 1); return true}else{return false};}
+                        listPassengers(){
+                            return this.passengers.map(Passenger=>`<h4>Passenger info & route:</h4>${this.Name}, ${this.Age}, ${this.Destination}.`).join("<br/>")}}
+
+                class Bus extends Vehicle{constructor(number, capacity, route, type, make, availability){
+                                            super(number, capacity, route, type)
+                                            this.make=make;
+                                            this.availability=availability;
+                                            }}
+
+                class Train extends Vehicle{constructor(number, capacity, route, type, make, availability)
+                                                {super(number, capacity, route, type);
+                                                this.make=make;
+                                                this.availability=availability;
+                                                }}
+                class Tram extends Vehicle{constructor(number, capacity, route, type, make, availability)
+                                                {super(number, capacity, route, type);
+                                                    this.make=make;
+                                                    this.availability=availability;
+                                                    }}
+                class Subway extends Vehicle{constructor(number, capacity, route, type, make, availability)
+                                                {super(number, capacity, route, type);
+                                                    this.make=make;
+                                                    this.availability=availability;
+                                                    }}
+                        
+            let Passenger=class{constructor(Name, Age, Destination, onVehicle)
+                                    {this.Name=Name;
+                                    this.Age=Age;
+                                    this.onVehicle=onVehicle;
+                                    this.Destination=Destination;};
+                                    
+                                display(){document.getElementById("output").innerHTML=out;}}
+               const myBus=new Bus(140, 48, [400,340], "Petrol, 2 axles bus", "Solaris", "from 5.40 to 23.40") 
+               const myTram=new Tram(20,80, [17,18,13],"Standard", "Unknown", "Available" )
+               const mySubway=new Subway(40,200, [1,2,4,5], "Standard", "Siemens", "Available")
+               const myTrain=new Train(35, 600, ["L1","L2"], "Electrial", "FLIRT/ Pinifarina", "Unavailable due to signal error")
+
+               function handleaddpassengerclick(){const PassengerName=document.getElementById("passengername").value;
+                                                const passengerAge=document.getElementById("passengerage").value;
+                                                const passengerDest=document.getElementById("passengerdest").value;
+
+                                                if (!PassengerName||!passengerAge||!passengerDest) {alert("Please fill in passenger details.")
+                                                 return;   
+                                                }
+                                                const selectedTransport=document.getElementById("transport").value;
+                                                const passenger=new Passenger(PassengerName, passengerAge, passengerDest);
+                                                switch (selectedTransport) {
+                                                    case "Bus": const addedtoBus=myBus.addpassenger(passenger);
+                                                        if(addedtoBus){passenger.onVehicle=true;
+                                                                    document.getElementById("output").innerHTML="Passenger added to Bus"}
+                                                        else{document.getElementById("output").innerHTML="Bus is full."}
+                                                        break;
+                                                    case "Train": const addedtoTrain=myTrain.addpassenger(passenger);
+                                                            if (addedtoTrain) {passenger.onVehicle=true;
+                                                                document.getElementById("output").innerHTML="Passenger added";
+                                                            } else {document.getElementById("output").innerHTML="Train is full"
+                                                                } break;
+                                                    case "Tram": const addedtoTram=myTram.addpassenger(passenger);
+                                                                if(addedtoTram){passenger.onVehicle=true;
+                                                                            document.getElementById("output").innerHTML="Passenger added"}
+                                                                else{document.getElementById("output").innerHTML="Tram is full."} break;
+                                                    case "Subway": const addedtoSubway=mySubway.addpassenger(passenger);
+                                                                    if (addedtoSubway) {passenger.onVehicle=true;
+                                                                            document.getElementById("output").innerHTML="Passenger added"
+                                                                        
+                                                                    } else {document.getElementById("output").innerHTML="Subway is full"
+                                                                        
+                                                                    }
+                                                    default:alert("Invalid Transport method.")
+                                                        break;
+                                                }
+                                                }
+                function handleremovepassengerclick(){const PassengerName=document.getElementById("passengername").value;
+                                                    const passengerAge=document.getElementById("passengerage").value;
+                                                    const passengerDest=document.getElementById("passengerdest").value;
+                                                    
+                                                    const selectedTransport=document.getElementById("transport").value;
+                                                    const passenger=new Passenger(PassengerName, passengerAge, passengerDest);
+                                        let removed=false;
+                                        let Vehicle=null;
+                                       
+                                           switch (selectedTransport){
+                                            case "Bus": Vehicle=myBus;break;
+                                            case "Train": Vehicle=myTrain;break;
+                                            case "Tram": Vehicle=myTram;break;
+                                            case "Subway": Vehicle=mySubway;break;
+                                            default: alert("Invalid transport method.");
+                                        }
+                                        const passengerIndex=Vehicle.passengers.findIndex(p=>p.Name===PassengerName)
+                                        if (passengerIndex!==-1){Vehicle.passengers.splice(passengerIndex, 1);
+                                                removed=true;}
+                                    if (removed){document.getElementById("output").innerHTML="Passenger removed from vehicle."}
+                                            else{document.getElementById("output").innerHTML="Passenger not found on vehicle."}}
+            const addpassengerbutton=document.getElementById("addpassenger");
+            addpassengerbutton.addEventListener("click", handleaddpassengerclick );
+            
+            const removepassengerbutton=document.getElementById("removepassenger");
+            removepassengerbutton.addEventListener("click", handleremovepassengerclick);
+
+    </script>
+</body>
+</html>

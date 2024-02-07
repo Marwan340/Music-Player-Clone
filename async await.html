@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise, async/await</title>
+</head>
+<style>
+
+</style>
+<body>
+    <form id="searchform">
+    <input type="text" id="searchinput" placeholder="Enter film by title"/>
+    <button type="submit" id="getterm">Retrieve Movie Details</button>
+        </form>
+    
+        <div id="loading">Loading...</div>
+        <div id="results"></div>
+    
+
+    <script>
+        
+               /* const getterm=document.getElementById("getterm");
+                getterm.onclick=()=>getresponse();
+                async function getresponse(){
+                            const apikey=`21b9df15`;
+                            const searchinput=document.getElementById("searchinput").value;
+                            const fetchurl=`http://www.omdbapi.com/?t=${encodeURIComponent(searchinput)}&apikey=${apikey}`;
+                            const getinfo=await fetch (fetchurl);
+                            const getinfo1= await getinfo.json();
+                            console.log(getinfo1);}*/
+                
+        document.addEventListener("DOMContentLoaded", ()=>{
+                                const searchinput=document.getElementById("searchinput");
+                                const searchform=document.getElementById("searchform");
+                                const loading=document.getElementById("loading");
+                                const results=document.getElementById("results");
+                            
+                            searchform.addEventListener("submit", async(event)=>{
+                                        event.preventDefault();
+                                        const term=searchinput.value;
+                                        results.innerHTML="";
+                                        loading.style.display="block";
+                                    try{const apikey="21b9df15";
+                                        const fetchurl=`http://www.omdbapi.com/?s=${encodeURIComponent(term)}&apikey=${apikey}`;
+                                        const get=await fetch(fetchurl);
+                                        const getjson=await get.json();
+
+                                        if(getjson.Response==="True"){const movies=getjson.Search;
+                                            for (const movie of movies){
+                                                    const title=movie.Title;
+                                                    const year=movie.Year;
+                                                    const rated=movie.Rated;
+                                                    const release=movie.Released;
+                                                    const runtime=movie.Runtime;
+                                                    const genre=movie.Genre;
+                                                    const director=movie.Director;
+                                                    const writer=movie.Writer;
+                                                    const plot=movie.Plot;
+                                                    const country=movie.Country;
+                                                    
+                                                   
+
+                                                    const movieelement=document.createElement("div");
+                                                    movieelement.innerHTML=`<h2>${title}</h2>
+                                                                            <h4>${year}</h4>
+                                                                            <h4>${rated ? `Rated:${rated}`:``}</h4>
+                                                                            <h4>${release ? `Released: ${release}`:``}</h4>
+                                                                            <h4>${genre ? `Genre:${genre}`: ``}</h4>
+                                                                            <h4>${runtime ? `Runtime: ${runtime}` : ``}</h4>
+                                                                            <h4>${plot ? `Plot : ${plot}` : ""}</h4>
+                                                                            <h4>${country ? `Country: ${country}` : ``}</h4>
+                                                                            `;
+                                                                    results.appendChild(movieelement);
+                                            }} else {results.innerHTML=`<p><b>No results for ${getfilm}</b></p>`;}
+                                        }
+                                            catch(error){console.error("An error occured, please try later", error);
+                                                results.innerHTML="<p>An error occured, please try later</p>"}
+                                            finally{loading.style.display="none";}
+                                    })})
+
+        
+    </script>
+</body>
+</html>

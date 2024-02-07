@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+       th{flex-wrap: wrap;}
+        
+    </style>
+</head>
+<body>
+    <div id="output">
+    <input type="text" id="searchinput" placeholder="enter movie title"/>
+    <button type="button" id="search">Search</button></div>
+    <table>
+        <thead><tr>
+           <th width="120px"><h3 id="movie">Movie:</h3></th>
+           <th width="120px"><h3 id="director">Director:</h3></th>
+           <th width="120px"><h3 id="release">Release date:</h3></th></tr>
+           <tr>
+            <td id="movies"></td>
+            <td id="dirname"></td>
+            <td id="date"></td>
+           </tr>
+        </thead>
+       
+    </table>
+
+    <script src="movies.js">
+     </script>
+</body>
+</html>

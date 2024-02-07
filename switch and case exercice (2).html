@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h3>Select fruit:</h3>
+<h6>Apple, 0.99USD</h6>
+<h6>Pear, 0.79USD</h6>
+<h6>Orange, 1.19USD</h6>
+<h6>Grapes, 1.49USD</h6>
+<h6>Grapefruit, 1.79USD</h6>
+<h6>Kiwi, 0.79USD</h6>
+<h6>Apricots, 1.29USD</h6>
+<div id="output"></div>
+<body>
+    
+    <script>
+        let fruit=prompt ("pick the price corresponding to each number 1-7");
+        let totalprice="";
+
+        switch (fruit) {case "0.99": console.log("Apple");break;
+                        case "0.79": console.log("Pear"); break;
+                        case "1.19": console.log("Orange");break;
+                        case "1.49": console.log("Grapes");break;
+                        case "1.79": console.log("Grapefruit");break;
+                        case "0.79": console.log("Kiwi");break;
+                        case "1.29": console.log("Apricots");
+                        };
+        let number=prompt ("How many fruits are you purchasing?");
+
+        switch(number){case"1":console.log();}
+
+        if (20>=number && number>1 ) {document.getElementById("output").innerHTML=(fruit*number)}
+                
+    </script>
+</body>
+</html>

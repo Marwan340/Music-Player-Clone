@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML dynamic elements</title>
+</head>
+<style>
+    #formm{ border: 2px solid black;
+            border-radius: 7px;
+            width: 315px;
+            background-color: lightgray;}
+    #form {padding-bottom: 30px;
+            border: 1px solid black;
+            width: 295px;
+            margin-top: 2px;
+            margin-left: 3px;
+            
+            }
+    #formarea {border: 1px solid black;
+                padding: 1px;
+                width: 300px;
+                height: 100px;
+                margin-left: 5px;
+                margin-bottom: 5px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: whitesmoke;
+            }
+    #completionStatus, .Savebtn {display:block;
+                                flex-direction: column;
+                                margin-left: 4px;}
+    .Savebtn {margin-top: 3px;
+            text-align:right;
+            margin-left: 90px;
+            margin-bottom: 2px;}
+
+    #tasktitle {margin-left: 65px;
+                margin-top: 2px;
+                text-align: center;}
+
+    .taskarea {display:grid;
+            flex-wrap: wrap;
+            gap: 19px;
+            align-items: center;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 5px;
+            margin-top: 30px;
+            width: 310px;
+            background-color: lightgray;
+            }   
+    .Viewbtn, .Editbtn, .Deletebtn { width: 220px;
+                                    margin-left: 40px;}
+    #tasktoEdit, #tasktoDelete { width: 220px;
+                                margin-left: 40px;}
+    #editedtitleinput, #editedcontentinput {margin: 3px;}
+</style>
+<body>
+    <div id="formm">
+    <div id="completionStatus"></div>
+    <input id="tasktitle" type="text" placeholder="Task Title"><br/>
+    <input id="form" type="text" placeholder="Write to-do task">
+    
+    <button class="Savebtn">Save Task</button>
+    <div id="formarea">
+        <h4>Completion Status:</h4>
+    </div>
+</div>
+    <div class="taskarea">
+        <button class="Viewbtn">View Tasks</button>
+        <input id="tasktoEdit" type="text" placeholder="Enter task to edit">
+        <button class="Editbtn">Edit Task</button>
+        <input id="tasktoDelete" type="text" placeholder="Task title to Delete">
+        <button class="Deletebtn">Delete Task</button>
+        <div id="tasktitledisplay"></div>
+        <div id="taskcontentdisplay"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+
+            const form = document.getElementById("form");
+            const tasktitle = document.getElementById("tasktitle");
+            const Savebtn = document.querySelector(".Savebtn");
+            const completionStatus = document.querySelector("#formarea h4");
+            const Viewbtn = document.querySelector(".Viewbtn");
+            const tasktoEdit = document.getElementById("tasktoEdit");
+            const Editbtn = document.querySelector(".Editbtn");
+            const tasktoDelete = document.getElementById("tasktoDelete");
+            const Deletebtn = document.querySelector(".Deletebtn");
+            const tasktitledisplay = document.getElementById("tasktitledisplay");
+            const taskcontentdisplay = document.getElementById("taskcontentdisplay");
+
+            Deletebtn.addEventListener("click", () => {
+                const tasktitletoDelete=tasktoDelete.value;
+                if (localStorage.getItem(tasktitletoDelete)){
+                localStorage.removeItem(tasktitletoDelete); 
+                const completionStatus=document.getElementById("formarea");
+                completionStatus.innerHTML+=" To-do task removed.";
+
+                setTimeout(() => {completionStatus.innerHTML=""                    
+                }, 3000)}
+                else{  alert("Task not found in storage.");}
+            });
+            Savebtn.addEventListener("click", () => {            
+                localStorage.setItem(tasktitle.value, form.value);
+                const completionStatus=document.getElementById("formarea");
+                completionStatus.innerHTML+=" To-do task added.";
+                tasktitledisplay.innerHTML="Task title: "+tasktitle.value;
+                taskcontentdisplay.innerHTML="Task content: "+form.value;
+
+                setTimeout(() => {completionStatus.innerText="";}, 3000);
+            });
+              Viewbtn.addEventListener("click", () => {
+                const tasktitledisplay= document.getElementById("tasktitledisplay");
+                const taskcontentdisplay=document.getElementById("taskcontentdisplay");
+                    tasktitledisplay.innerHTML="<b>Task title:</b> <br/> ";
+                    taskcontentdisplay.innerHTML="<b>Task content:</b> <br/> ";
+
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    const value= localStorage.getItem(key);
+
+                    tasktitledisplay.innerHTML+=key +". <br/>";
+                    taskcontentdisplay.innerHTML+=value+". <br/>";
+                }
+              });
+              Editbtn.addEventListener("click", () => {
+                const tasktitletoedit=tasktoEdit.value;
+                const taskValuetoEdit=localStorage.getItem(tasktitletoedit);
+
+                if (taskValuetoEdit) {
+                    const editedtitleinput=document.createElement("input");
+                    editedtitleinput.placeholder="Edit Title";
+                    editedtitleinput.setAttribute("id", "editedtitleinput");
+                    const editedcontentinput=document.createElement("textarea");
+                    editedcontentinput.placeholder="Edit Content";
+                    editedcontentinput.setAttribute("id", "editedcontentinput");
+                    const saveEditedTask=document.createElement("button");
+                    saveEditedTask.innerHTML="Save Edited Task.";
+
+                saveEditedTask.addEventListener("click", () => {
+                    const editedtitle=editedtitleinput.value;
+                    const editedcontent=editedcontentinput.value;
+                    localStorage.setItem(editedtitle, editedcontent);
+                    localStorage.removeItem(tasktitletoedit);
+                    completionStatus.innerHTML+=" <p>Task edited successfully.</p>";
+                    setTimeout(() => {completionStatus.innerHTML="";
+                        
+                    }, 2000);
+                });
+                const editContainer=document.createElement("div");
+                editContainer.appendChild(editedtitleinput);
+                editContainer.appendChild(editedcontentinput);
+                editContainer.appendChild(saveEditedTask);
+
+                tasktitledisplay.innerHTML="";
+                taskcontentdisplay.innerHTML="";
+
+                taskcontentdisplay.appendChild(editContainer);
+              }else{
+                alert("Task not found in storage.");
+              }});
+                
+            });
+    </script>
+</body>
+</html>

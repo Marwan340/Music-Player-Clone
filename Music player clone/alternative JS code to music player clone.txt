@@ -1,0 +1,30 @@
+/*const Songs=[
+    {
+        id: 1, name: "Confessions", album: "Confessions", length: "3:30", path: "Audio/confessions r.m4a"
+    },
+    {
+        id: 2, name: "Allegiance", album: "Confessions", length: "3:56", path: "Audio/allegiance r.m4a"
+    },
+    {
+        id:3, name: "Minutes", album: "Confessions", length: "3:30", path: "Audio/minutes r.m4a"
+    },
+    {
+        id: 4, name: "A Picture of Time", album: "A Picture of Time", length: "4:03", path: "Audio/apot r.m4a"
+    }, 
+    {
+        id: 5, name: "Diamond Dust", album: "A Picture of Time", length:"3:42", path: "Audio/diamond dust r.m4a"
+    },
+    {
+        id: 6, name: "Talamanca", album: "talamanca", length: "4:03", path: "Audio/talamanca r.m4a"
+    }
+  ];
+
+  headsong.forEach((Element, i)=>{Element.getElementsByClassName("headsong")[0].innerHTML=Songs[i].headsong});
+
+  masterPlay.addEventListener("click", ()=>{
+    if (AudioElement.paused || AudioElement.currentTime<=0){
+        AudioElement.play();
+    } else{
+        AudioElement.pause();
+    }
+  });*/

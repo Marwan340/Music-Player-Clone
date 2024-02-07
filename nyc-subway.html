@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        function getstation(linename){
+fetch("nyc-subway.json")
+.then(Response=>Response.json())
+.then(data=>{for (line in data.lines){
+    let subwayline=data.lines[line];
+    if (subwayline.name===linename){
+    console.log(subwayline.stations);
+    return subwayline.stations}
+}
+})
+.catch(error=>{console.log(error)})}
+getstation("1");
+    </script>
+</body>
+</html>
+

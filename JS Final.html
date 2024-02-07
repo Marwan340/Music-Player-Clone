@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Final</title>
+    <style>
+        #form {margin: 2px;
+                border: 4px solid darkgray; 
+                width: 450px;              
+                border-radius: 16px;
+                display:flex;            
+                flex-direction: column;
+                flex-wrap: wrap;
+                text-align: center;
+                font-size: 35px;
+                margin-left: 600px;
+                }
+        label, input {margin: 8px;
+                margin-top: 5px;
+                margin-bottom: 5px;}
+        input {height: 20px;}
+        #map { height: 350px;
+                width: 380px;
+                margin-left: 10px;}
+        #Eventdatetime {width: 160px;}
+        .EditBtn .DeleteBtn {margin: 9px;
+                            padding: 4px;}
+        #EventsDisplay {margin-left: 600px;
+                        font-size: 20px;}
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.js?features=default"></script>
+
+    
+</head>
+<body>
+    <form id="form">
+        <label for="EventName"><b>Event name:</b></label>
+        <input type="text" id="EventName"/><br/><br/>
+        <label for="EventDate"><b>Event Date/Time:</b></label>
+        <div id="divdatetime"><input type="date" id="EventDate"/><input type="time" id="EventTime"/></div><br/>
+        <label for="SearchEvent"><b>Search Event:</b></label><input type="text" id="SearchEvent"/><button type="button" id="SearchButton">Search Event</button>
+        <div id="SearchOutput"></div>
+        <br/>
+        <label for="EventLoc"><b>Event Location:</b></label>
+        <br/>
+        <input type="text" id="Location" class="controls" placeholder="Search Box"/>
+        <div id="map">
+        </div>
+        <label for="EventNotes"><b>Notes:</b></label>
+        <input type="text" id="EventNotes"/>
+        <div id="buttons">
+            <button type="button" id="ViewEvents">View Events</button>
+            <button type="button" id="SaveEvent">Save Event</button>
+        </div>
+    </form><br/>
+    
+    <form id="EventsDisplay">
+    </form>
+    <script src="JS Final.js"></script> 
+    
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Fetch</title>
+</head>
+<body>
+    <input type="text" id="city" name="city"/>
+    <button type="submit" id="getdata">Get weather data</button>
+    <div id="datacontainer">
+    <h4 id="loc">Country/Location:</h4><p id="location"></p>
+    <h4 id="weather">Weather:</h4> <p id="wx"></p>
+    <h4 id="clouds">Clouds:</h4><p id="cloud"></p>
+    <h4 id="coord">Coordinates:</h4><p id="Coordinates"></p>
+    <h4 id="Pa">Pressure:</h4><p id="hpa"></p>
+    <h4 id="sys">Sunrise & Sunset:</h4><p id="sunrise"></p>
+    <h4 id="vis">Visibility:</h4><p id="sikt"></p>
+    <h4 id="wind">Wind:</h4><p id="gust"></p></div>
+    <script>
+    const getdata=document.getElementById("getdata");
+    const cityinput=document.getElementById("city");
+       
+    getdata.addEventListener("click", ()=>{
+    const city=cityinput.value;
+        if (city===""){alert("Enter a city name:");
+        return;}
+        fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=3710ce3c6ae66151e01e17b84d90330f")
+    .then(data=>data.json())
+    .then(data=>{
+    
+    document.getElementById("location").textContent=`${data.sys.country}, ${data.name}`;
+    
+    document.getElementById("wx").textContent=`${data.weather[0].description}`;
+    
+    document.getElementById("cloud").textContent=`${data.clouds.all}%`;
+    
+    document.getElementById("Coordinates").textContent=`${"Lon: "+data.coord.lon+"; Lat: "+data.coord.lat}`;
+    
+    document.getElementById("hpa").textContent=`${data.main.pressure+"hPa"}`;
+    
+    document.getElementById("sunrise").textContent=`${data.sys.sunrise}/${data.sys.sunset}`;
+    
+    document.getElementById("sikt").textContent=`${data.visibility}m`;
+    
+    document.getElementById("gust").textContent=`${"Speed: "+data.wind.speed+"; Wind deg: "+data.wind.deg+"; Gust: "+data.wind.gust}`;})
+   
+    .catch(error=>console.log(error));})
+         
+            
+        
+    </script>
+</body>
+</html>

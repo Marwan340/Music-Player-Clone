@@ -1,0 +1,38 @@
+<songs>
+<song id="1">  
+<album>Confessions</album>
+    <name>Confessions</name>
+    <length>3:30</length>
+    <url>/Music%20player%20clone/confessions%20r.m4a</url>  
+</song>
+<song id="2">
+    <album>Confessions</album>
+    <name>Allegiance</name>
+    <length>3:56</length>
+    <url>/Music%20player%20clone/allegiance%20r.m4a</url>
+</song>
+<song id="3">
+    <album>Confessions</album>
+    <name>Minutes</name>
+    <length>3:30</length>
+    <url>/Music%20player%20clone/minutes%20r.m4a</url>
+</song>
+<song id="4"> 
+    <album>A Picture of Time</album>
+    <name>A Picture of Time</name>
+    <length>4:03</length>
+    <url>/Music%20player%20clone/apot%20r.m4a</url>
+</song>
+<song id="5">
+    <album>A Picture of Time</album>
+    <name>Diamond Dust</name>
+    <length>3:42</length>
+    <url>/Music%20player%20clone/diamond%20dust%20r.m4a</url>
+</song>
+<song id="6">
+    <album>Single Track</album>
+    <name>Talamanca</name>
+    <length>3:06</length>
+    <url>/Music%20player%20clone/talamanca%20r.m4a</url>
+</song>
+</songs>

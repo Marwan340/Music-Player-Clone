@@ -1,0 +1,9 @@
+*I used DOMcontentloaded event listener to load the html before JS code (got this idea from somewhere else, 
+	as I didn't study it yet or find it in the course program).
+*const getdata to execute the search after clicking on the search button.
+*const movieinput is for the area where the search is done.
+*const moviename is the constant value that's typed in the search field.
+*const movie is the function that retrieves the movie name based on the input.
+
+*document.getelementbyID("id").textContent to show the result in the HTML.
+*.catch to show code errors on the console.log().
